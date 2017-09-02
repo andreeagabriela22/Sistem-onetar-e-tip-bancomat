@@ -1,0 +1,52 @@
+
+	Tema2 - Protocoale de comunicatie
+
+	Am implementat urmatoarele facilitati:
+		-login
+		-logout
+		-getmoney
+		-listsold
+		-putmoney
+		-quit pentru server
+		-quit pentru client
+
+	Implementarea serverului
+	
+	Mai intai citesc din fisier datele utilizatorilor , 
+	datele le retin intr-o structura.
+
+	Creez socketul pentru transmisie, imi creez descriptori de citire pentru functia
+	select, setez adresa si portul serverului, ii asociez socketului
+	adresa si portul iar cu ajutorul functiei select astept conexiuni.
+		
+	Pot primii date de la :
+	-stdin : se poate da comanda quit , caz in care 
+	trimit o notificare catre toti clientii
+		
+	-socketul pentru stabilirea conexiunii "sockfd":
+	creez un nou socket si il adaug in multimea 
+	descriptorului de citire si il mai adaug intr-un
+	vector in care retin clientii (ma ajuta la send_all)
+
+
+	-de la clienti: apelez functie process_msg care
+	proceseaza cererea clientului si pune in buffer
+	mesajul de intoarcere catre client
+	
+	Implementarea clientului
+	
+	Creez un socket, creez fisierul de log, conectez 
+	socketul la server, cu ajutorul functiei select
+	primesc/trimit date.
+		
+	De la stdin citesc comenzile, daca este comanda login,
+	verific daca clientul are o sesiune deschisa sau 
+	daca se cere logout, dar clientul nu este logat.
+	Comanda o trimit serverului si astept raspuns.
+		
+	Pe socketul deschis primesc confirmarea de la server
+	pe care o afisez la consola si in fisierul de log
+			
+		
+	
+		
